@@ -1,4 +1,4 @@
-package com.cicklum.paperrockscissor.aplication.pojo;
+package com.cicklum.paperrockscissor.service.aplication.pojo;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,7 +11,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.cicklum.paperrockscissor.aplication.poji.AplicationUserService;
+import com.cicklum.paperrockscissor.service.aplication.poji.AplicationUserService;
 import com.cicklum.paperrockscissor.exception.UserNotFoundException;
 import com.cicklum.paperrockscissor.model.GameOption;
 import com.cicklum.paperrockscissor.model.GameResult;

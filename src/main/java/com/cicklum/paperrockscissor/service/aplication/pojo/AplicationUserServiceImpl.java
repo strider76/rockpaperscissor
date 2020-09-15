@@ -1,11 +1,11 @@
-package com.cicklum.paperrockscissor.aplication.pojo;
+package com.cicklum.paperrockscissor.service.aplication.pojo;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.cicklum.paperrockscissor.aplication.poji.AplicationUserService;
+import com.cicklum.paperrockscissor.service.aplication.poji.AplicationUserService;
 import com.cicklum.paperrockscissor.exception.UserDuplicatedException;
 import com.cicklum.paperrockscissor.model.User;
 

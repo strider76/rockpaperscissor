@@ -4,7 +4,6 @@ import java.util.Date;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -17,7 +16,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class Round {
+public class Round implements Comparable<Round> {
 
     private GameOption player1;
     private GameOption player2;
@@ -26,5 +25,10 @@ public class Round {
     private User user;
     private Date createdAt;
     private Date modifyAt;
+
+    @Override
+    public int compareTo(Round o) {
+        return - getCreatedAt().compareTo(o.createdAt);
+    }
 
 }
