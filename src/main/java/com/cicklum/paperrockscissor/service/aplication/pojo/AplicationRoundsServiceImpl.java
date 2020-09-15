@@ -1,4 +1,4 @@
-package com.cicklum.paperrockscissor.aplication.pojo;
+package com.cicklum.paperrockscissor.service.aplication.pojo;
 
 import java.util.Date;
 import java.util.List;
@@ -7,8 +7,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.cicklum.paperrockscissor.aplication.poji.AplicationRoundsService;
-import com.cicklum.paperrockscissor.aplication.poji.AplicationUserService;
+import com.cicklum.paperrockscissor.service.aplication.poji.AplicationRoundsService;
+import com.cicklum.paperrockscissor.service.aplication.poji.AplicationUserService;
 import com.cicklum.paperrockscissor.exception.UserNotFoundException;
 import com.cicklum.paperrockscissor.model.GameOption;
 import com.cicklum.paperrockscissor.model.GameResult;
@@ -76,11 +76,12 @@ public class AplicationRoundsServiceImpl implements AplicationRoundsService {
 
     }
 
-    @Override
-    public List<Round> getAllGames() { return roundsPlayed; }
 
     @Override
     public List<Round> getAllGamesByResuls(final GameResult resultFilter) {
+
+        if (GameResult.ALL.equals(resultFilter))
+            return roundsPlayed;
 
         return roundsPlayed.stream()
 		.filter(e->e.getResult().equals(resultFilter))

@@ -1,11 +1,11 @@
-package com.cicklum.paperrockscissor.aplication.pojo;
+package com.cicklum.paperrockscissor.service.aplication.pojo;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.cicklum.paperrockscissor.aplication.poji.AplicationUserService;
+import com.cicklum.paperrockscissor.service.aplication.poji.AplicationUserService;
 import com.cicklum.paperrockscissor.exception.UserDuplicatedException;
 
 @SpringBootTest

@@ -1,4 +1,4 @@
-package com.cicklum.paperrockscissor.aplication.poji;
+package com.cicklum.paperrockscissor.service.aplication.poji;
 
 import java.util.Optional;
 

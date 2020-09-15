@@ -1,4 +1,4 @@
-package com.cicklum.paperrockscissor.aplication.poji;
+package com.cicklum.paperrockscissor.service.aplication.poji;
 
 import java.util.List;
 
@@ -14,8 +14,6 @@ public interface AplicationRoundsService {
     List<Round> getUserGames(final String userName) throws UserNotFoundException;
 
     void resetUserGames(final String user) throws UserNotFoundException;
-
-    List<Round> getAllGames();
 
     List<Round> getAllGamesByResuls(final GameResult resultFilter);
 
