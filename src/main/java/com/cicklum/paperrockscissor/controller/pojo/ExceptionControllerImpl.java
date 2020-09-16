@@ -11,14 +11,16 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.cicklum.paperrockscissor.controller.poji.ExceptionController;
+import com.cicklum.paperrockscissor.exception.AccessDeniedException;
 import com.cicklum.paperrockscissor.exception.UserDuplicatedException;
 import com.cicklum.paperrockscissor.service.dto.ErrorMessagesDto;
 
-@ControllerAdvice
+@RestControllerAdvice
 @Validated
 public class ExceptionControllerImpl extends ResponseEntityExceptionHandler implements ExceptionController{
 
@@ -28,6 +30,11 @@ public class ExceptionControllerImpl extends ResponseEntityExceptionHandler impl
 	List<ErrorMessagesDto> errorsList = new ArrayList<>();
 	errorsList.add(new ErrorMessagesDto(ex.getMessage()));
 	return new ResponseEntity<>(errorsList, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity accessDeniedException(AccessDeniedException e) {
+	return new ResponseEntity(e.getMessage(), HttpStatus.FORBIDDEN);
     }
 
     @Override
