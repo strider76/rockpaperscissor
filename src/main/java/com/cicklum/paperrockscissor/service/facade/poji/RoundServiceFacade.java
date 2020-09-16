@@ -1,12 +1,10 @@
 package com.cicklum.paperrockscissor.service.facade.poji;
 
 import com.cicklum.paperrockscissor.exception.UserNotFoundException;
-import com.cicklum.paperrockscissor.model.GameResult;
 import com.cicklum.paperrockscissor.service.dto.CurrentGameDto;
 import com.cicklum.paperrockscissor.service.dto.PlayRoundDtoPost;
 import com.cicklum.paperrockscissor.service.dto.PlayRoundResponseDto;
 import com.cicklum.paperrockscissor.service.dto.SumaryGeneralDto;
-import com.cicklum.paperrockscissor.service.dto.SumaryResultDto;
 
 public interface RoundServiceFacade {
 
@@ -18,6 +16,5 @@ public interface RoundServiceFacade {
 
     SumaryGeneralDto getAllGames();
 
-    SumaryResultDto getAllGamesByResult(final GameResult resultFilter);
 
 }
