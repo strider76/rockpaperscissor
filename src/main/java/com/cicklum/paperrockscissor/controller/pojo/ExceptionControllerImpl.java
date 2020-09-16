@@ -36,9 +36,9 @@ public class ExceptionControllerImpl extends ResponseEntityExceptionHandler impl
 
 	List<ErrorMessagesDto> errorList = new ArrayList<>();
 
-	result.getFieldErrors().forEach(fieldError -> {
-	    errorList.add(new ErrorMessagesDto(fieldError.getField()+" : " +fieldError.getDefaultMessage()));
-	});
+	result.getFieldErrors().forEach(fieldError ->
+	    errorList.add(new ErrorMessagesDto(fieldError.getField()+" : " +fieldError.getDefaultMessage()))
+	);
 
 	return new ResponseEntity(errorList, HttpStatus.BAD_REQUEST);
     }
