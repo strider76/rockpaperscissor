@@ -12,7 +12,6 @@ import com.cicklum.paperrockscissor.service.dto.CurrentGameDto;
 import com.cicklum.paperrockscissor.service.dto.PlayRoundDtoPost;
 import com.cicklum.paperrockscissor.service.dto.PlayRoundResponseDto;
 import com.cicklum.paperrockscissor.service.dto.SumaryGeneralDto;
-import com.cicklum.paperrockscissor.service.dto.SumaryResultDto;
 import com.cicklum.paperrockscissor.service.facade.poji.RoundServiceFacade;
 import com.cicklum.paperrockscissor.service.mapper.RoundMapper;
 
@@ -54,11 +53,6 @@ public class RoundServiceFacadeImpl implements RoundServiceFacade {
         List<Round> draw = this.aplicationRoundsService.getAllGamesByResuls(GameResult.DRAW);
 
         return this.roundMapper.roundsToSumaryGeneralDto(all,player1Wins,player2Wins,draw);
-    }
-
-    @Override
-    public SumaryResultDto getAllGamesByResult(GameResult resultFilter) {
-        return roundMapper.roundToSumaryResultDto(this.aplicationRoundsService.getAllGamesByResuls(resultFilter));
     }
 
 }
