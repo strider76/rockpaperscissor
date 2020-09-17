@@ -2,6 +2,8 @@ package com.cicklum.paperrockscissor.controller.poji;
 
 import javax.validation.Valid;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,10 +16,12 @@ import com.cicklum.paperrockscissor.service.dto.UserDto;
 
 @RequestMapping("/user")
 @Validated
+@Api(tags = "User")
 @CrossOrigin(origins = "*")
 public interface UserController {
 
     @PostMapping("/signup")
+    @ApiOperation(value = "Create User")
     void createUser(@Valid @RequestBody UserDto userToCreate) throws UserDuplicatedException;
 
 
