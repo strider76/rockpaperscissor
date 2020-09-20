@@ -59,7 +59,7 @@ public class LoginOperation extends ApiListingScanner
 		.summary("Log in") //
 		.notes("Used to login, please copy 'Authorization header' response value to use in all rounds endpoints")
 		.build());
-	apis.add(new ApiDescription("/login", "Authentication documentation", operations, false));
+	apis.add(new ApiDescription("/user/login", "Authentication documentation", operations, false));
 
 	def.put("authentication", new ApiListingBuilder(context.getDocumentationContext().getApiDescriptionOrdering())
 		.apis(apis)
@@ -68,4 +68,5 @@ public class LoginOperation extends ApiListingScanner
 
 	return def;
     }
+
 }
