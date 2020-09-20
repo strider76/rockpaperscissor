@@ -1,6 +1,8 @@
-#PAPER, ROCK, SCISSOR API BACKEND
-##Configuration
-###Specification
+# PAPER, ROCK, SCISSOR API BACKEND
+
+## Configuration
+
+### Specification
 this project was made with the following technologies <br>
 - Java 8
 - Spring boot
