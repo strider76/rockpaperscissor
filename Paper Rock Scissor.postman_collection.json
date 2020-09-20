@@ -1,0 +1,213 @@
+{
+	"info": {
+		"_postman_id": "0709f92f-a43b-48d2-b7c2-d1f59641b097",
+		"name": "Paper Rock Scissor",
+		"description": "Paper, Rock, Scissor API Backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user endpoints",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\": \"test\",\r\n    \"password\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/user/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"signup"
+							]
+						},
+						"description": "Create User in the system"
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\": \"test\",\r\n    \"password\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/user/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"login"
+							]
+						},
+						"description": "sign in in the system, in the response, you must get the authorization header param to use in all round's endpoints"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "rounds endpoints",
+			"item": [
+				{
+					"name": "Play a Round",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0IiwiZXhwIjoxNjAwNjI0MjczfQ.028v4MkY3ikBpQ22V95p2lgfCz5kpLhVEgTpOhDIcXu1D6lBg32mrrFrvSTqeNlUAP-0NZVguPJSeiDQfVz7Pw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"player1Move\": \"PAPER\",\r\n    \"player2Move\": \"ROCK\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/round/play",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"round",
+								"play"
+							]
+						},
+						"description": "Play a Round, inser Player1 and Player2's moves\r\nValis values are [ROCK|PAPER|SCISSOR]"
+					},
+					"response": []
+				},
+				{
+					"name": "User Round Sumary",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0IiwiZXhwIjoxNjAwNjI0MjczfQ.028v4MkY3ikBpQ22V95p2lgfCz5kpLhVEgTpOhDIcXu1D6lBg32mrrFrvSTqeNlUAP-0NZVguPJSeiDQfVz7Pw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/round/sumary",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"round",
+								"sumary"
+							]
+						},
+						"description": "Show Total and all User visible Rounds"
+					},
+					"response": []
+				},
+				{
+					"name": "Reset user rounds",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0IiwiZXhwIjoxNjAwNjI0MjczfQ.028v4MkY3ikBpQ22V95p2lgfCz5kpLhVEgTpOhDIcXu1D6lBg32mrrFrvSTqeNlUAP-0NZVguPJSeiDQfVz7Pw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/round/reset",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"round",
+								"reset"
+							]
+						},
+						"description": "Update all user's rounds visibles to invisibles"
+					},
+					"response": []
+				},
+				{
+					"name": "Get General Sumary",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0IiwiZXhwIjoxNjAwNjI0MjczfQ.028v4MkY3ikBpQ22V95p2lgfCz5kpLhVEgTpOhDIcXu1D6lBg32mrrFrvSTqeNlUAP-0NZVguPJSeiDQfVz7Pw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/round/sumary/general",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"round",
+								"sumary",
+								"general"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

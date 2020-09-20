@@ -32,7 +32,7 @@ public interface RoundController {
 
     @PutMapping("/reset")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    void  restUserRounds(@RequestHeader("Authorization") String token) throws UserNotFoundException;
+    void resetUserRounds(@RequestHeader("Authorization") String token) throws UserNotFoundException;
 
     @GetMapping("/sumary/general")
     @ResponseStatus(HttpStatus.OK)

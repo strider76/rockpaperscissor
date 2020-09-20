@@ -8,6 +8,11 @@ import com.cicklum.paperrockscissor.service.dto.UserDto;
 import com.cicklum.paperrockscissor.service.facade.poji.UserServiceFacade;
 import com.cicklum.paperrockscissor.service.mapper.UserMapper;
 
+/**
+ * User ServiceFacade
+ *
+ * @author manuel.millan
+ */
 @Service
 public class UserServiceFacadeImpl implements UserServiceFacade {
 
@@ -19,6 +24,13 @@ public class UserServiceFacadeImpl implements UserServiceFacade {
 	this.aplicationUserService = aplicationUserService;
     }
 
+    /**
+     * function to create user in userList's bean
+     * @param userName userName to create
+     * @param password password encoded
+     * @return UserDto create
+     * @throws UserDuplicatedException  username not in userList's Bean
+     */
     @Override
     public UserDto createUser(String userName, String password) throws UserDuplicatedException {
 	return userMapper.modelToDto(this.aplicationUserService.createUser(userName, password));

@@ -9,6 +9,11 @@ import com.cicklum.paperrockscissor.service.aplication.poji.AplicationUserServic
 import com.cicklum.paperrockscissor.exception.UserDuplicatedException;
 import com.cicklum.paperrockscissor.model.User;
 
+/**
+ * User AplicationService
+ *
+ * @author manuel.millan
+ */
 @Service
 public class AplicationUserServiceImpl implements AplicationUserService {
 
@@ -16,6 +21,13 @@ public class AplicationUserServiceImpl implements AplicationUserService {
 
     public AplicationUserServiceImpl(List<User> users) {this.listUsers = users;}
 
+    /**
+     * Function to create user in listUsers's bean
+     * @param userName username to create, must be unique
+     * @param password password's userName
+     * @return User created
+     * @throws UserDuplicatedException throwed when userName already exist in listUsers's
+     */
     @Override
     public User createUser(String userName, String password) throws UserDuplicatedException {
 
@@ -29,6 +41,11 @@ public class AplicationUserServiceImpl implements AplicationUserService {
 
     }
 
+    /**
+     * function to fins a userName in listUsers's bean
+     * @param userName to find
+     * @return Optional<User>
+     */
     @Override
     public Optional<User> findByUserName(String userName) {
 	return listUsers.stream()

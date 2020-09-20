@@ -23,21 +23,27 @@ public class AuthenticationService {
     //Token Expiration time (ms) 60 * 60 * 1000 = 3600000 1 hora
     private static final long EXPIRATIONTIME = 3600000L;
     private static final String PREFIX = "Bearer";
+    private static final String AUTHORIZATION = "Authorization";
 
-    //clave para firmar/descifar JWT "YWt0aW9zMDAxZW5j"
+    // Key for Signing/Decode JWT
     @Value("${spring.app.jwtSecret}")
-    private String SIGNINGKEY;
+    private String signingkey;
 
-    //Creamos Token JWT y lo añadimos al Response en el header "Authorization"(Bearer tokenjwt"
-    // y damos access-control para que Javascript pueda utilizar el token en front
+    /**
+     * Create JWT and we add it to header's response in Authorization Attribute
+     * and finally we give access-Controll so JavaScript Can access to Authorization attribute and
+     * could take  JWT
+     * @param response
+     * @param userName
+     */
     public void addToken(HttpServletResponse response, String userName) {
         String jwt = Jwts.builder()
                         .setSubject(userName)
                         .setExpiration(new Date(System.currentTimeMillis() + EXPIRATIONTIME))
-                        .signWith(SignatureAlgorithm.HS512, SIGNINGKEY)
+                        .signWith(SignatureAlgorithm.HS512, signingkey)
                         .compact();
-        response.addHeader("Authorization", PREFIX + " " + jwt);
-        response.addHeader("Access-Control-Expose-Headers", "Authorization");
+        response.addHeader(AUTHORIZATION, PREFIX + " " + jwt);
+        response.addHeader("Access-Control-Expose-Headers", AUTHORIZATION);
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "GET,POST,DELETE,PUT,OPTIONS");
         response.setHeader("Access-Control-Allow-Headers", "*");
@@ -45,14 +51,21 @@ public class AuthenticationService {
         response.setHeader("Access-Control-Max-Age", "180");
     }
 
-    //en las llamadas que se hagan, obtenemos token del header->Authorization
-    // si vemos que hay usuario en el token, entonces autenticamos al usuario para usar nuestro api
+
+
+    /**
+     * On the following call, we Obtain JWT across header in Authorization attribute
+     * if token contains a user, then we authenticate the user in the app
+     * @param request
+     * @return
+     * @throws AccessDeniedException
+     */
     public Authentication getAuthentication (HttpServletRequest request) throws AccessDeniedException {
-        String token = request.getHeader("Authorization");
+        String token = request.getHeader(AUTHORIZATION);
         if (token != null) {
             try {
                 String user = Jwts.parser()
-                        .setSigningKey(SIGNINGKEY)
+                        .setSigningKey(signingkey)
                         .parseClaimsJws(token.replace(PREFIX, ""))
                         .getBody()
                         .getSubject();
@@ -61,9 +74,9 @@ public class AuthenticationService {
                     return new UsernamePasswordAuthenticationToken(user,null, Collections.emptyList());
                 }
             } catch (ExpiredJwtException expired) {
-                throw new AccessDeniedException("Token expirado, por favor realice login nuevamente");
+                throw new AccessDeniedException("Token expired, please login again");
             } catch (SignatureException signature) {
-                throw new AccessDeniedException("Token no válido");
+                throw new AccessDeniedException("Invalid Token");
             }
         }
         return null;
