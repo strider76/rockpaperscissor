@@ -15,6 +15,12 @@ import com.cicklum.paperrockscissor.service.dto.SumaryGeneralDto;
 import com.cicklum.paperrockscissor.service.facade.poji.RoundServiceFacade;
 import com.cicklum.paperrockscissor.service.mapper.RoundMapper;
 
+/**
+ * RoundServiceFacada - We used this class to call AplicationRoundService and return the Results in DTO
+ * across RoundMapper( MapStruct Mapper)
+ *
+ * @author manuel.millan
+ */
 @Service
 public class RoundServiceFacadeImpl implements RoundServiceFacade {
 
@@ -26,6 +32,13 @@ public class RoundServiceFacadeImpl implements RoundServiceFacade {
         this.roundMapper = roundMapper;
     }
 
+    /**
+     * function to play a round
+     * @param userName username logged
+     * @param roundMoves moves player1 and player2
+     * @return PlayRoundResponseDTO with final Result
+     * @throws UserNotFoundException userName not in userList´s Bean
+     */
     @Override
     public PlayRoundResponseDto playUserRound(final String userName, final PlayRoundDtoPost roundMoves) throws UserNotFoundException {
 	return this.roundMapper.roundToPlayRoundResponseDto(
@@ -33,6 +46,12 @@ public class RoundServiceFacadeImpl implements RoundServiceFacade {
         );
     }
 
+    /**
+     * Get User summary
+     * @param userName username logged
+     * @return CurrentGameDto Object with the user sumary
+     * @throws UserNotFoundException username not in userList's Bean
+     */
     @Override
     public CurrentGameDto sumaryUserRounds(String userName) throws UserNotFoundException {
 
@@ -40,11 +59,20 @@ public class RoundServiceFacadeImpl implements RoundServiceFacade {
 
     }
 
+    /**
+     * Change All Round to invisible
+     * @param userName username logged
+     * @throws UserNotFoundException username not in userList's Bean
+     */
     @Override
     public void resetUserGames(final String userName) throws UserNotFoundException {
         this.aplicationRoundsService.resetUserGames(userName);
     }
 
+    /**
+     * Get a general sumary
+     * @return SumaryGeneralDTO
+     */
     @Override
     public SumaryGeneralDto getAllGames() {
         List<Round> all = this.aplicationRoundsService.getAllGamesByResuls(GameResult.ALL);

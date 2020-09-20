@@ -19,21 +19,39 @@ import org.springframework.stereotype.Component;
 import com.cicklum.paperrockscissor.service.dto.UserDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * Class Used to create a filter login in /login GET, so we check if the authentication it´s sucessfull with out Bean 'listUsers'
+ * if Login it´s successfull we add a JWT to the Header Authentication
+ */
 @Component
 public class LoginFilter extends AbstractAuthenticationProcessingFilter {
 
-    private static final String URILOGIN = "/login";
+    private static final String URILOGIN = "/user/login";
 
     private final AuthenticationService authenticationService;
 
-    //asignamos tanto la url que utilizaremos como login de authentication como el Authentication manager encargado de la autenticacion
+
+    /**
+     * Create a Login Filter with Authentication Manager and Authentication Service
+     * on URL_LOGIN
+     * @param authManager
+     * @param authenticationService
+     */
     public LoginFilter(AuthenticationManager authManager, AuthenticationService authenticationService) {
         super(new AntPathRequestMatcher(URILOGIN));
         setAuthenticationManager(authManager);
         this.authenticationService = authenticationService;
     }
 
-    //Metodo que autentica los procesos de identificación
+
+    /**
+     * Method for Authentication
+     * @param request
+     * @param response
+     * @return
+     * @throws AuthenticationException
+     * @throws IOException
+     */
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
             throws AuthenticationException, IOException {
@@ -48,6 +66,13 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
         );
     }
 
+    /**
+     * Method trigered when authentication it´s succesfull, so we add a JWT to Header Authetication
+     * @param request
+     * @param response
+     * @param chain
+     * @param authResult
+     */
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) {
         authenticationService.addToken(response, authResult.getName());
