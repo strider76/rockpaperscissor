@@ -77,4 +77,8 @@ public class UserDetailsImpl implements UserDetails {
         return Objects.equals(username, user.username);
     }
 
+    @Override
+    public int hashCode() {
+        return getUsername().hashCode();
+    }
 }

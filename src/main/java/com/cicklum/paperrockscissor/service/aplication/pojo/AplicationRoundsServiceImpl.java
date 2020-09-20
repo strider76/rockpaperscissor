@@ -15,6 +15,9 @@ import com.cicklum.paperrockscissor.model.GameResult;
 import com.cicklum.paperrockscissor.model.Round;
 import com.cicklum.paperrockscissor.model.User;
 
+/**
+ * Rounds Application Service
+ */
 @Service
 public class AplicationRoundsServiceImpl implements AplicationRoundsService {
 
@@ -29,6 +32,14 @@ public class AplicationRoundsServiceImpl implements AplicationRoundsService {
         this.aplicationUserService = aplicationUserService;
     }
 
+    /**
+     * Play a Round's user, we check if user exist in userList's bean, then we'll play a Round
+     * @param userName user logged
+     * @param player1Option Player1Move [ROCK|PAPER|SCISSOR]
+     * @param player2Option Player2Move [ROCK|PAPER|SCISSOR]
+     * @return Round Object with Moves's played and result
+     * @throws UserNotFoundException user not present in userList's bean
+     */
     @Override
     public Round playRound(String userName, GameOption player1Option, GameOption player2Option) throws UserNotFoundException {
 
@@ -43,6 +54,12 @@ public class AplicationRoundsServiceImpl implements AplicationRoundsService {
 	return roundToCreate;
     }
 
+    /**
+     * Get All visibles user Games for user resume (Total visible played and all rounds)
+     * @param userName user logged
+     * @return List<Rounds> visibles from user Logged
+     * @throws UserNotFoundException user not present in userList's bean
+     */
     @Override
     public List<Round> getUserGames(String userName) throws UserNotFoundException {
 
@@ -58,6 +75,11 @@ public class AplicationRoundsServiceImpl implements AplicationRoundsService {
 
     }
 
+    /**
+     * Change Round's user to invisible
+     * @param userName user logged
+     * @throws UserNotFoundException user not present in userList's bean
+     */
     @Override
     public void resetUserGames(String userName) throws UserNotFoundException {
 
@@ -76,7 +98,15 @@ public class AplicationRoundsServiceImpl implements AplicationRoundsService {
 
     }
 
-
+    /**
+     * Function to get All Games by GameResult's filter
+     * @param resultFilter: should be one these Values
+     *     PLAYER1_WINS,
+     *     PLAYER2_WINS,
+     *     DRAW,
+     *     ALL
+     * @return List<Round> by Filter
+     */
     @Override
     public List<Round> getAllGamesByResuls(final GameResult resultFilter) {
 

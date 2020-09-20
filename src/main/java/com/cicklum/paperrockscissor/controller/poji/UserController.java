@@ -2,6 +2,7 @@ package com.cicklum.paperrockscissor.controller.poji;
 
 import javax.validation.Valid;
 
+import org.springframework.http.ResponseEntity;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.validation.annotation.Validated;
@@ -21,6 +22,7 @@ import com.cicklum.paperrockscissor.service.dto.UserDto;
 public interface UserController {
 
     @PostMapping("/signup")
+    ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userToCreate) throws UserDuplicatedException;
     @ApiOperation(value = "Create User")
     void createUser(@Valid @RequestBody UserDto userToCreate) throws UserDuplicatedException;
 

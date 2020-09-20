@@ -3,6 +3,7 @@ package com.cicklum.paperrockscissor.model;
 import java.util.Date;
 
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,6 +17,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
+@EqualsAndHashCode
 public class Round implements Comparable<Round> {
 
     private GameOption player1;
